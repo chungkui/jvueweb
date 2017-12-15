@@ -12,7 +12,7 @@
     data: function () {
       return {}
     }, created: function () {
-        alert(232);
+
     },
     methods: {}
   }
