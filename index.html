@@ -16,7 +16,9 @@
     <link title="orange" href="./static/css/dermaorange.css" rel="stylesheet" type="text/css" disabled="disabled"/>
     <link href="./static/css/templatecss.css" rel="stylesheet" title="" type="text/css"/>
     <script src="./static/js/jquery.cookie.js" type="text/javascript"></script>
-
+    <script>
+      var server_host="http://localhost:8081/";
+    </script>
   </head>
   <body>
     <div id="app">
@@ -38,8 +40,8 @@
         $("link[title='"+cookie_style+"']").removeAttr("disabled");
       }
       /*左侧导航栏显示隐藏功能*/
-      $(".subNav").click(function(){
-        /*显示*/
+     /* $(".subNav").click(function(){
+        /!*显示*!/
         if($(this).find("span:first-child").attr('class')=="title-icon glyphicon glyphicon-chevron-down")
         {
           $(this).find("span:first-child").removeClass("glyphicon-chevron-down");
@@ -47,7 +49,7 @@
           $(this).removeClass("sublist-down");
           $(this).addClass("sublist-up");
         }
-        /*隐藏*/
+        /!*隐藏*!/
         else
         {
           $(this).find("span:first-child").removeClass("glyphicon-chevron-up");
@@ -57,14 +59,14 @@
         }
         // 修改数字控制速度， slideUp(500)控制卷起速度
         $(this).next(".navContent").slideToggle(300).siblings(".navContent").slideUp(300);
-      })
+      })*/
 
 
       /*左侧鼠标移入提示功能*/
-      $(".sBox ul li").mouseenter(function(){
+  /*    $(".sBox ul li").mouseenter(function(){
         if($(this).find("span:last-child").css("display")=="none")
         {$(this).find("div").show();}
       }).mouseleave(function(){$(this).find("div").hide();})
-    })
+    })*/
   </script>
 </html>
