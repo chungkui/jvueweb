@@ -6,16 +6,16 @@
     <title>jvueweb</title>
     <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./static/css/bootstrap.min.css">
-
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./static/css/style.css">
-     <link title="blue" href="./static/css/dermadefault.css" rel="stylesheet" type="text/css"/>
+    <link title="blue" href="./static/css/dermadefault.css" rel="stylesheet" type="text/css"/>
     <link title="green" href="./static/css/dermagreen.css" rel="stylesheet" type="text/css" disabled="disabled"/>
     <link title="orange" href="./static/css/dermaorange.css" rel="stylesheet" type="text/css" disabled="disabled"/>
     <link href="./static/css/templatecss.css" rel="stylesheet" title="" type="text/css"/>
     <script src="./static/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="./static/layer/layer.js"></script>
     <script>
       var server_host="http://localhost:8081/";
     </script>
@@ -25,48 +25,19 @@
     </div>
   </body>
   <script type="text/javascript">
-    $(function(){
+    $(function() {
       /*换肤*/
-      $(".dropdown .changecolor li").click(function(){
+      $(".dropdown .changecolor li").click(function () {
         var style = $(this).attr("id");
-        $("link[title!='']").attr("disabled","disabled");
-        $("link[title='"+style+"']").removeAttr("disabled");
-
-        $.cookie('mystyle', style, { expires: 7 }); // 存储一个带7天期限的 cookie
-      })
-      var cookie_style =/* $.cookie("mystyle")*/null;
-      if(cookie_style!=null){
-        $("link[title!='']").attr("disabled","disabled");
-        $("link[title='"+cookie_style+"']").removeAttr("disabled");
+        $("link[title!='']").attr("disabled", "disabled");
+        $("link[title='" + style + "']").removeAttr("disabled");
+      $.cookie('mystyle', style, {expires: 7}); // 存储一个带7天期限的 cookie
+      });
+      var cookie_style = /* $.cookie("mystyle")*/null;
+      if (cookie_style != null) {
+        $("link[title!='']").attr("disabled", "disabled");
+        $("link[title='" + cookie_style + "']").removeAttr("disabled");
       }
-      /*左侧导航栏显示隐藏功能*/
-     /* $(".subNav").click(function(){
-        /!*显示*!/
-        if($(this).find("span:first-child").attr('class')=="title-icon glyphicon glyphicon-chevron-down")
-        {
-          $(this).find("span:first-child").removeClass("glyphicon-chevron-down");
-          $(this).find("span:first-child").addClass("glyphicon-chevron-up");
-          $(this).removeClass("sublist-down");
-          $(this).addClass("sublist-up");
-        }
-        /!*隐藏*!/
-        else
-        {
-          $(this).find("span:first-child").removeClass("glyphicon-chevron-up");
-          $(this).find("span:first-child").addClass("glyphicon-chevron-down");
-          $(this).removeClass("sublist-up");
-          $(this).addClass("sublist-down");
-        }
-        // 修改数字控制速度， slideUp(500)控制卷起速度
-        $(this).next(".navContent").slideToggle(300).siblings(".navContent").slideUp(300);
-      })*/
-
-
-      /*左侧鼠标移入提示功能*/
-  /*    $(".sBox ul li").mouseenter(function(){
-        if($(this).find("span:last-child").css("display")=="none")
-        {$(this).find("div").show();}
-      }).mouseleave(function(){$(this).find("div").hide();})
-    })*/
+    });
   </script>
 </html>

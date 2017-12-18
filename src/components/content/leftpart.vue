@@ -1,23 +1,26 @@
 <template>
   <div class="subNavBox">
-    <div class="sBox"  v-for="(item,index) in p_menu_list" :key="item.id">
-      <div class="subNav " v-bind:class="item.isopen?'sublist-down':'sublist-up'"  v-on:click="dohover(index)">
-        <span class="title-icon glyphicon " v-bind:class="item.isopen?'glyphicon-chevron-down':'glyphicon-chevron-up'"></span><span
+    <div class="sBox" v-for="(item,index) in p_menu_list" :key="item.id">
+      <div class="subNav " v-bind:class="item.isopen?'sublist-down':'sublist-up'" v-on:click="dohover(index)">
+        <span class="title-icon glyphicon "
+              v-bind:class="item.isopen?'glyphicon-chevron-down':'glyphicon-chevron-up'"></span><span
         class="sublist-title">{{item.name}}</span>
       </div>
-      <s_menu_list v-bind:childList="item.sunList"></s_menu_list>
+      <ul class="navContent">
+        <s_menu_item v-for="(liitem,index) in item.sunList"
+                     v-bind:item="liitem" :key="liitem.id"
+        ></s_menu_item>
+
+      </ul>
+
     </div>
-    <!-- <menu_item v-for="(item,index) in p_menu_list" :key="item.id"
-     v-bind:childList="item.childList"
-     >
-     </menu_item>-->
+
   </div>
 </template>
 <script>
-  import s_menu_list from "./left/s_menu_list";
-
+  import s_menu_item from "./left/s_menu_item";
   export default {
-    components: {s_menu_list},
+    components: {s_menu_item},
     name: "leftpart",
     data: function () {
       return {
@@ -34,12 +37,12 @@
         this.p_menu_list = response.data;
         // 响应成功回调
       }).catch((e) => {
-        debugger
+
       });
     },
     methods: {
-      dohover:function (index) {
-        this.p_menu_list[index].isopen=!this.p_menu_list[index].isopen;
+      dohover: function (index) {
+        this.p_menu_list[index].isopen = !this.p_menu_list[index].isopen;
       }
     }
   }
