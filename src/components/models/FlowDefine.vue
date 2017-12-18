@@ -36,7 +36,7 @@
       >
       </v-table>
       <div class="panel-footer text-center">
-        <v-pagination :total="totalNum" @page-change="pageChange" @page-size-change="pageSizeChange" :page-size="pageSize"></v-pagination>
+        <v-pagination :total="totalNum" :pageSizeOption="[5,10,15]"@page-change="pageChange" @page-size-change="pageSizeChange" :page-size="pageSize"></v-pagination>
 
       </div>
     </div>
@@ -105,9 +105,9 @@
             }
           ],
         isLoading: true,
-        totalNum :110,
+        totalNum :0,
         pageIndex:1,
-        pageSize:20
+        pageSize:5
 
       }
     }
@@ -121,8 +121,8 @@
         this.isLoading = true;
 
         this.$http.get(inner_url, {params: {pageIndex:this.pageIndex,pageSize:this.pageSize}}).then(function (res) {
-          this.modeList = res.body;
-          this.totalNum=220;
+          this.modeList = res.body.list;
+          this.totalNum=res.body.rowCount;
           this.isLoading = false;
           /*$("#dbtime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss', language:  'zh-CN'});*/
         }, function (res) {
@@ -207,7 +207,8 @@
         this.pageIndex=pageIndex;
         this.loaddata();
       }, pageSizeChange: function (pageSize) {
-        this.pageSize=pageSize
+        this.pageSize=pageSize;
+        this.pageIndex=1;
         this.loaddata();
       }
     }, filters: {
