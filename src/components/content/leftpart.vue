@@ -11,7 +11,6 @@
         <s_menu_item v-for="(liitem,index) in item.sunList"
                      v-bind:item="liitem" v-bind:selectedId="selectedId" :key="liitem.id"
         ></s_menu_item>
-
       </ul>
       </transition>
     </div>
