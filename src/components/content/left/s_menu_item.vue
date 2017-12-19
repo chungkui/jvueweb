@@ -1,7 +1,7 @@
 <template>
 
-    <li class="active:index==0"   v-on:mouseenter="li_mouseenter"
-        v-on:mouseleave="li_mouseleave">
+    <li v-bind:class="{active:item.id==selectedId}"   v-on:mouseenter="li_mouseenter"
+        v-on:mouseleave="li_mouseleave"  >
       <div class="showtitle" style="width:100px;"  v-bind:class="{'divshow':isdivshow}" ><!--v-bind:style="{display:isshow?'block':'none'}"-->
         <img src="/static/img/leftimg.png"/>{{item.name}}
       </div>
@@ -19,16 +19,22 @@
     name: "s_menu_item",
     data:function(){
       return {
-        isdivshow:false
+        isdivshow:false,
+
       }
     },
     props: {
       item: {
         type: Object
+      },
+      selectedId:{
+        type:String
       }
     }, methods: {
       loadlink:function (link) {
+
         this.$router.push(link);
+        this.$parent.selectedId=this.item.id;
       },
       li_mouseenter: function () {
        this.isdivshow=true;

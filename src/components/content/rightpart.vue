@@ -1,5 +1,5 @@
 <template>
-  <div class="right-product my-index" >
+  <div class="right-product " >
     <div class="container-fluid">
       <div class="info-center">
         <router-view></router-view>

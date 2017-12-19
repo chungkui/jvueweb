@@ -1,17 +1,71 @@
 <template>
   <div>
-    <div class="panel panel-default">
+    <div class="page-header">
+      <div class="pull-left">
+        <h4>流程定义</h4>
+      </div>
+      <!-- <div class="pull-right">
+         <button type="button" class="btn btn-mystyle btn-sm">搜索</button>
+         <button type="button" class="btn btn-mystyle btn-sm">返回</button>
+       </div>-->
+    </div>
+
+    <div class="search-box row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <span class="pull-left form-span">名称:</span>
+          <input type="text" class="form-control" placeholder="请输入名称">
+        </div>
+        <div class="form-group">
+          <span class="pull-left form-span">状态:</span>
+          <select class="form-control">
+            <option>请选择</option>
+            <option>发布</option>
+            <option>未发布</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <span class="pull-left form-span">key:</span>
+          <input type="text" class="form-control" placeholder="key">
+        </div>
+        <div class="form-group btn-search">
+          <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group pull-right" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" data-toggle="modal"
+                  data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增
+          </button>
+          <div class="btn-group" role="group">
+            <button type="button" v-on:click="resize" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              <span class="glyphicon glyphicon-edit"></span> 审核
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">通过</a></li>
+              <li><a href="#">不通过</a></li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> 编辑</button>
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> 删除</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="panel panel-default" v-on:resize="resize">
       <div id="myAlert" style="display: none;margin-bottom:0" class="alert alert-success">
 
         <strong>操作成功！</strong>
       </div>
-      <div class="panel-heading text-right">
-        <button type="button" id="create" class="btn btn-default btn-sm" data-toggle="modal"
+      <div class="panel-heading ">
+        流程管理
+      </div>
+      <!--  <button type="button" id="create" class="btn btn-default btn-sm" data-toggle="modal"
                 data-target="#myModal">
           创建流程
-        </button>
-      </div>
-
+        </button>-->
       <!--
            <td style="flex: 1">
              <button class="btn btn-primary btn-xs" v-on:click="edit('/modeler.html?modelId='+item.id)">编辑
@@ -33,10 +87,12 @@
         :table-data="modeList"
         :show-vertical-border="false"
         :is-loading="isLoading"
+        ref="flowdefineTable"
       >
       </v-table>
       <div class="panel-footer text-center">
-        <v-pagination :total="totalNum" :pageSizeOption="[5,10,15]"@page-change="pageChange" @page-size-change="pageSizeChange" :page-size="pageSize"></v-pagination>
+        <v-pagination :total="totalNum" :pageSizeOption="[5,10,15]" @page-change="pageChange"
+                      @page-size-change="pageSizeChange" :page-size="pageSize"></v-pagination>
 
       </div>
     </div>
@@ -105,9 +161,9 @@
             }
           ],
         isLoading: true,
-        totalNum :0,
-        pageIndex:1,
-        pageSize:5
+        totalNum: 0,
+        pageIndex: 1,
+        pageSize: 5
 
       }
     }
@@ -115,14 +171,16 @@
       this.loaddata();
     }
     , methods: {
+      resize: function () {
+        this.$refs.flowdefineTable.resize();
+      },
       loaddata: function () {
 
         var inner_url = server_host + '/flowDefine/list';
         this.isLoading = true;
-
-        this.$http.get(inner_url, {params: {pageIndex:this.pageIndex,pageSize:this.pageSize}}).then(function (res) {
+        this.$http.get(inner_url, {params: {pageIndex: this.pageIndex, pageSize: this.pageSize}}).then(function (res) {
           this.modeList = res.body.list;
-          this.totalNum=res.body.rowCount;
+          this.totalNum = res.body.rowCount;
           this.isLoading = false;
           /*$("#dbtime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss', language:  'zh-CN'});*/
         }, function (res) {
@@ -204,14 +262,16 @@
           window.clearTimeout(inertime)
         }, 1000);
       }, pageChange: function (pageIndex) {
-        this.pageIndex=pageIndex;
+        this.pageIndex = pageIndex;
         this.loaddata();
       }, pageSizeChange: function (pageSize) {
-        this.pageSize=pageSize;
-        this.pageIndex=1;
+        this.pageSize = pageSize;
+        this.pageIndex = 1;
         this.loaddata();
       }
-    }, filters: {
+    }
+    ,
+    filters: {
       DateFormat: function (cellval) {
         if (cellval != null) {
           var date = new Date(parseInt(cellval, 10));
