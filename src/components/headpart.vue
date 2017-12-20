@@ -16,42 +16,42 @@
           <div class="dropdown-menu topbar-nav-list">
             <div class="topbar-nav-col">
               <div class="topbar-nav-item">
-                <p class="topbar-nav-item-title">弹性计算</p>
+                <p class="topbar-nav-item-title">相关技术</p>
                 <ul>
-                  <li><a href="#">
+                  <li><a  target="_blank" href="http://www.bootcss.com/">
                     <span class="glyphicon glyphicon-road"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">bootcss</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://cn.vuejs.org/">
                     <span class="glyphicon glyphicon-picture"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">vuejs</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://router.vuejs.org/zh-cn/">
                     <span class="glyphicon glyphicon-gift"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">vuerouter</span>
                   </a>
                   </li>
                 </ul>
               </div>
 
               <div class="">
-                <p class="topbar-nav-item-title">弹性计算</p>
+                <p class="topbar-nav-item-title">资料库</p>
                 <ul>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://github.com/">
                     <span class="glyphicon glyphicon-road"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">github</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://github.com/huangshuwei/vue-easytable">
                     <span class="glyphicon glyphicon-picture"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">vue-easytable</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://gitee.com/">
                     <span class="glyphicon glyphicon-gift"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">gitee</span>
                   </a>
                   </li>
                 </ul>
@@ -61,42 +61,42 @@
 
             <div class="topbar-nav-col">
               <div class="topbar-nav-item">
-                <p class="topbar-nav-item-title">弹性计算</p>
+                <p class="topbar-nav-item-title">后台资料库</p>
                 <ul>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://gitee.com/shuzheng/zheng">
                     <span class="glyphicon glyphicon-road"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">zheng</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="http://projects.spring.io/spring-framework/">
                     <span class="glyphicon glyphicon-picture"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">spring</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="http://www.mybatis.org/mybatis-3/zh/index.html">
                     <span class="glyphicon glyphicon-gift"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">mybatis</span>
                   </a>
                   </li>
                 </ul>
               </div>
 
               <div class="">
-                <p class="topbar-nav-item-title">弹性计算</p>
+                <p class="topbar-nav-item-title">作者相关</p>
                 <ul>
-                  <li><a href="#">
+                  <li><a target="_blank" href="http://www.qqxh.net/">
                     <span class="glyphicon glyphicon-road"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">清浅小河</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://github.com/purecreek">
                     <span class="glyphicon glyphicon-picture"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">purecreek</span>
                   </a>
                   </li>
-                  <li><a href="#">
+                  <li><a target="_blank" href="https://gitee.com/jvue/">
                     <span class="glyphicon glyphicon-gift"></span>
-                    <span class="">云服务器 ECS</span>
+                    <span class="">jvue</span>
                   </a>
                   </li>
                 </ul>
@@ -129,11 +129,11 @@
         <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">帮助与文档<span
           class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">帮助与文档</a></li>
-            <li class="divider"></li>
-            <li><a href="#">论坛</a></li>
-            <li class="divider"></li>
-            <li><a href="#">博客</a></li>
+            <li><a target="_blank" href="https://github.com/purecreek/jvueweb">帮助与文档</a></li>
+            <li   target="_blank" href="https://github.com/purecreek/jvueweb"class="divider"></li>
+            <li><a  target="_blank" href="https://github.com/purecreek/jvueweb">论坛</a></li>
+            <li  target="_blank" href="https://github.com/purecreek/jvueweb" class="divider"></li>
+            <li><a  target="_blank" href="http://www.qqxh.net">博客</a></li>
           </ul>
         </li>
         <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">adminstrator<span

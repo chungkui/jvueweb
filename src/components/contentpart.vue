@@ -1,6 +1,6 @@
 <template>
   <div class="down-main">
-    <div class="left-main " v-bind:class="{'left-full':isfull,'left-off':!isfull}">
+    <div class="left-main " v-bind:class="{'left-full':isfull,'left-off':!isfull}" >
       <div class="sidebar-fold"v-on:click="dohover"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
       <leftpart></leftpart>
     </div>
@@ -26,6 +26,11 @@
     methods: {
       dohover:function () {
         this.isfull=!this.isfull;
+        if(!this.isfull){
+          $('[data-toggle="tooltip"]').tooltip()
+        }else{
+          $('[data-toggle="tooltip"]').tooltip('destroy')
+        }
 
       }
 
