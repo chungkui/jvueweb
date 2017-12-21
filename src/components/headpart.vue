@@ -16,7 +16,7 @@
           <div class="dropdown-menu topbar-nav-list">
             <div class="topbar-nav-col">
               <div class="topbar-nav-item">
-                <p class="topbar-nav-item-title">相关技术</p>
+                <p class="topbar-nav-item-title">前端技术</p>
                 <ul>
                   <li><a  target="_blank" href="http://www.bootcss.com/">
                     <span class="glyphicon glyphicon-road"></span>
