@@ -4,10 +4,7 @@
       <div class="pull-left">
         <h4>流程定义</h4>
       </div>
-      <!-- <div class="pull-right">
-         <button type="button" class="btn btn-mystyle btn-sm">搜索</button>
-         <button type="button" class="btn btn-mystyle btn-sm">返回</button>
-       </div>-->
+
     </div>
 
     <div class="search-box row">
@@ -38,7 +35,8 @@
                   data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增
           </button>
           <div class="btn-group" role="group">
-            <button type="button" v-on:click="resize" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            <button type="button" v-on:click="resize" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false">
               <span class="glyphicon glyphicon-edit"></span> 审核
               <span class="caret"></span>
@@ -62,24 +60,7 @@
       <div class="panel-heading ">
         流程管理
       </div>
-      <!--  <button type="button" id="create" class="btn btn-default btn-sm" data-toggle="modal"
-                data-target="#myModal">
-          创建流程
-        </button>-->
-      <!--
-           <td style="flex: 1">
-             <button class="btn btn-primary btn-xs" v-on:click="edit('/modeler.html?modelId='+item.id)">编辑
-             </button>
-             <button class="btn btn-success btn-xs" v-on:click="deploy(item.id,index)">部署
-             </button>
-             <button class="btn btn-info btn-xs" v-on:click="exportModel(item.id, item.name+'.bpmn','bpmn')">xml
-             </button>
-             <button class="btn btn-info btn-xs" v-on:click="exportModel(item.id, item.name+'.json','json')">json
-             </button>
 
-             <button class="btn btn-danger btn-xs" v-on:click="deleteModel(item.id,index)">删除
-             </button>
-       </table>-->
       <v-table
         is-horizontal-resize
         style="width:100%"
@@ -139,6 +120,9 @@
   export default {
 
     name: "flow-define",
+    props: {
+      permissionId: {type: String}
+    },
     data: function () {
       return {
         name: "",
@@ -175,12 +159,11 @@
         this.$refs.flowdefineTable.resize();
       },
       loaddata: function () {
-
-        var inner_url = server_host + '/flowDefine/list';
+        var inner_url = server_host + '/flowDefine/list?permissionId='+this.permissionId;
         this.isLoading = true;
         this.$http.get(inner_url, {params: {pageIndex: this.pageIndex, pageSize: this.pageSize}}).then(function (res) {
-          this.modeList = res.body.list;
-          this.totalNum = res.body.rowCount;
+          this.modeList = res.body.data.list;
+          this.totalNum = res.body.data.rowCount;
           this.isLoading = false;
           /*$("#dbtime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss', language:  'zh-CN'});*/
         }, function (res) {
@@ -202,7 +185,7 @@
               var myurl = server_host + "/modeler.html?modelId=" + res.body.bizdata;
               this.edit(myurl)
             } else if (500 === res.body.state) {
-              alert(res.body.description);
+              alert(res.body.data.message);
 
             }
           }, function (res) {
@@ -233,12 +216,11 @@
         var inner_url = server_host + "/flowDefine/delete/" + modelid;
         this.$http.post(inner_url, {}).then(
           function (res) {
-
             this.modeList.splice(index, 1)
             if (200 === res.body.state) {
               this.docomfirm();
             } else if (500 === res.body.state) {
-              alert(res.body.description);
+              alert(res.body.data.message);
             }
           }, function (res) {
           })

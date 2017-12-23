@@ -9,7 +9,7 @@
       <a class="navbar-brand mystyle-brand"><span class="glyphicon glyphicon-home"></span></a></div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="li-border"><a class="mystyle-color" href="#">主页</a></li>
+        <li class="li-border"><a class="mystyle-color" v-on:click="gotuhome" href="#">主页</a></li>
         <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">功能介绍<span
           class="caret"></span></a>
           <!----下拉框选项---->
@@ -139,7 +139,7 @@
         <li class="dropdown li-border"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">adminstrator<span
           class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">退出</a></li>
+            <li><a href="#" v-on:click="loginout">退出</a></li>
           </ul>
         </li>
         <li class="dropdown"><a href="#" class="dropdown-toggle mystyle-color" data-toggle="dropdown">换肤<span
@@ -160,7 +160,18 @@
 
 <script>
     export default {
-        name: "headpart"
+        name: "headpart",
+      methods:{
+        loginout:function () {
+          var logout_url = server_host + "/logout";
+          this.$http.get(logout_url, {params:{},credentials: true}).then((response) => {
+          }).catch((e) => {
+          });
+        },
+        gotuhome:function () {
+          this.$router.push('/');
+        }
+      }
     }
 </script>
 

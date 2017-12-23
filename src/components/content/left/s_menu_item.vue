@@ -20,7 +20,6 @@
     data:function(){
       return {
         isdivshow:false,
-
       }
     },
     props: {
@@ -32,8 +31,7 @@
       }
     }, methods: {
       loadlink:function (link) {
-
-        this.$router.push(link);
+        this.$router.push(link+'/'+this.item.permissionId);
         this.$parent.selectedId=this.item.permissionId;
       },
       li_mouseenter: function () {
