@@ -23,6 +23,12 @@
     }, components: {
       Headpart,
       Contentpart
+    },
+    created:function(){
+      if(this.$store.state.TOOKEN===null||this.$store.state.TOOKEN===''){
+         this.$store.commit('changeLoginInfo','logout');
+      }
+
     }
   }
 </script>

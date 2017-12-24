@@ -21,12 +21,20 @@ Vue.config.productionTip = false
 
 const store = new Vuex.Store({
   state:{
-    TOOKEN:''
+    TOOKEN:'',
+    userinfo:null
   },
   mutations:{
     changeLoginInfo(state,JSESSIONID){
-
       state.TOOKEN= JSESSIONID;
+    },
+    setuserinfo(state,userinfo){
+      state.userinfo= userinfo;
+    }
+  },
+  actions: {
+    setuserinfoact (context,userinfo) {
+      context.commit('setuserinfo',userinfo)
     }
   }
 })
@@ -62,7 +70,8 @@ new Vue({
       if(TOOKEN===null||TOOKEN===''){
         /*进行注销操作*/
          this.$router.push("/login");
-      }else{
+      }else if(TOOKEN==='logout'){
+      }else {
         this.$router.push("/");
       }
     }

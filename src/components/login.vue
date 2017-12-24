@@ -19,7 +19,7 @@
                      autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="remember"><input type="checkbox" id="remember"> 记住我</label>
+              <label for="remember"><input type="checkbox" v-model="rememberMe" name="remember-me" id="remember"> 记住我</label>
             </div>
             <div class="form-group">
               <p>没有账号? <a href="#">注册</a> | <a href="#">忘记密码?</a></p>
@@ -46,7 +46,8 @@
     data() {
       return {
         username: '',
-        password: ''
+        password: '',
+        rememberMe:''
       }
     },
     methods: {
@@ -59,16 +60,18 @@
         this.$http.post(login_url, {
           username: this.username,
           password: this.password,
+          rememberMe:this.rememberMe,
           permissionId: 1
         }, {credentials: true}).then(
           function (res) {
-            debugger;
+
             if (200 === res.body.state) {
               /*this.$router.push("/main")*/
               this.$store.commit("changeLoginInfo", res.body.data.JSESSIONID);
+              this.$store.commit("setuserinfo",res.body.data.userinfo);
             }
             else {
-              debugger;
+
               alert("失败"+this.username+':'+this.password)
             }
           }

@@ -72,7 +72,7 @@
       >
       </v-table>
       <div class="panel-footer text-center">
-        <v-pagination :total="totalNum" :pageSizeOption="[5,10,15]" @page-change="pageChange"
+        <v-pagination :total="totalNum" :pageSizeOption="[8,13,18]" @page-change="pageChange"
                       @page-size-change="pageSizeChange" :page-size="pageSize"></v-pagination>
 
       </div>
@@ -147,7 +147,7 @@
         isLoading: true,
         totalNum: 0,
         pageIndex: 1,
-        pageSize: 5
+        pageSize: 8
 
       }
     }
