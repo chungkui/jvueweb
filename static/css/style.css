@@ -138,8 +138,8 @@ body {
   background: #FFF;
   background: #ffffff url(../img/homebg.jpg) no-repeat;
   background-position: center bottom;
-  opacity:0.7;
-  filter:alpha(opacity=70);
+  /*opacity:0.7;
+  filter:alpha(opacity=70);*/
 }
 
 .sidebar-fold {
@@ -163,7 +163,7 @@ body {
   top: 50px;
   z-index: 100;
   position: fixed;
-  background-color: #293038;
+  background-color: #373d41;
 }
 
 .sBox ul li {
@@ -617,15 +617,6 @@ input.input-error {
   color: #098cba;
   border-bottom: solid 2px #098cba;
 }
-
-/*!*表格样式*!
-.table-header thead,.table-header tfoot{ background-color:#f5f6fa; color:#87898b;}
-.table-list{ margin-top:0px;}
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{border-bottom: 1px solid #e1e6eb;}
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{border-bottom: 1px solid #e1e6eb;}
-.table-bordered{border: 1px solid #e1e6eb;}
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{border: 1px solid #e1e6eb;}
-.table-margin{ margin-top:10px;}*/
 tfoot .pagination {
   margin: 0px;
 }

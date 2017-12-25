@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 /*============后台模板==============*/
-.navbar-mystyle{background-color:#09C; color:#FFF;}
-.mystyle-brand{ background-color:#0087b4; display:block;}
+.navbar-mystyle{background-color:#373d41; color:#FFF;}
+.mystyle-brand{ background-color:#373d41; display:block;}
 
 /*导航栏样式变更*/
 .navbar-mystyle .navbar-nav li .mystyle-color:hover{ background-color:#0087b4; color:#FFF;}
@@ -17,7 +17,7 @@
 .topbar-num{font-size: 12px;color: #fff;background: #f90;border-radius: 5px;padding: 2px 5px;
 display: inline-block;line-height: 16px;vertical-align: top;text-align: center;}
 
-.li-border{border-right: 1px solid #008fbf;}
+.li-border{border-right: 1px solid #4a4a4a;}
 /*左侧导航选中样式*/
 .sBox ul .active{ background-color:#09C;}
 
