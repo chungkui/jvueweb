@@ -16,13 +16,13 @@ export default new Router({
     {
       path: '/',
       component: Main,
-      children: [
+      children: [/*
         {
           path: 'flowDefine/:permissionId',
           name: 'flowDefine',
           component: FlowDefine,
           props: true
-        },
+        },*/
         {
           path: '',
           name: 'HelloWorld',
