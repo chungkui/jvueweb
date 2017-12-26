@@ -65,7 +65,7 @@ new Vue({
   },
   methods: {
     getPermissions: function () {
-      debugger;
+
      let nowpath= this.$router.currentRoute.path;
       if('/login'===nowpath){
         return;
@@ -96,34 +96,41 @@ new Vue({
       let mainComponent = {
         path: '/',
         component: Main,
-        children: []
+        children: [ {
+          path: '',
+          name: 'HelloWorld',
+          component: HelloWorld
+        }]
       };
-      munulist.forEach((menu) => {
-        if (menu.sunList.length > 0) {
-          menu.sunList.forEach((smenu) => {
-            let routeritem = {
-              path: 'flowDefine/:permissionId',
-              name: smenu.name,
-              component: () => ({
-                // 需要加载的组件。应当是一个 Promise
-                component: import('./components/' + smenu.routerName),
-                // 加载中应当渲染的组件
-                loading: HelloWorld,
-                // 出错时渲染的组件
-                error: HelloWorld,
-                // 渲染加载中组件前的等待时间。默认：200ms。
-                delay: 200,
-                // 最长等待时间。超出此时间则渲染错误组件。默认：Infinity
-                timeout: 3000
-              }),
-              props: true
-            };
+      if(munulist){
+        munulist.forEach((menu) => {
+          if (menu.sunList.length > 0) {
+            menu.sunList.forEach((smenu) => {
+              let routeritem = {
+                path: smenu.routerUri+'/:permissionId',
+                name: smenu.name,
+                component: () => ({
+                  // 需要加载的组件。应当是一个 Promise
+                  component: import('./components/' + smenu.componentPath),
+                  // 加载中应当渲染的组件
+                  loading: HelloWorld,
+                  // 出错时渲染的组件
+                  error: HelloWorld,
+                  // 渲染加载中组件前的等待时间。默认：200ms。
+                  delay: 200,
+                  // 最长等待时间。超出此时间则渲染错误组件。默认：Infinity
+                  timeout: 3000
+                }),
+                props: true
+              };
 
-            mainComponent.children.push(routeritem);
-          });
-        }
-      });
-      this.$router.addRoutes([mainComponent]);
+              mainComponent.children.push(routeritem);
+            });
+          }
+        });
+        this.$router.addRoutes([mainComponent]);
+      }
+
     }
   }
 })
