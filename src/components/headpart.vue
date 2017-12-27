@@ -182,7 +182,6 @@
       if(userinfo===null){
         var userinfo_url = server_host + "upms/login/userinfo";
         this.$http.get(userinfo_url, {params: {}, credentials: true}).then((response) => {
-
           userinfo = response.body.data;
           /*异步的只能通过提交action来实现*/
           this.$store.dispatch("setuserinfoact",userinfo);

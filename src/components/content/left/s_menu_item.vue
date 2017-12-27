@@ -31,7 +31,7 @@
       }
     }, methods: {
       loadlink:function (link) {
-        this.$router.push(link+'/'+this.item.permissionId);
+        this.$router.push(link);
         this.$parent.selectedId=this.item.permissionId;
       },
       li_mouseenter: function () {

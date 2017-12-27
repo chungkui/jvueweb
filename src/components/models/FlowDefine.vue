@@ -159,7 +159,7 @@
         this.$refs.flowdefineTable.resize();
       },
       loaddata: function () {
-        var inner_url = server_host + '/flowDefine/list?permissionId='+this.permissionId;
+        var inner_url = server_host + '/flowDefine/list';
         this.isLoading = true;
         this.$http.get(inner_url, {params: {pageIndex: this.pageIndex, pageSize: this.pageSize}}).then(function (res) {
           this.modeList = res.body.data.list;

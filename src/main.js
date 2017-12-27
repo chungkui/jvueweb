@@ -8,7 +8,9 @@ import 'vue-easytable/libs/themes-base/index.css'
 import {VTable, VPagination} from 'vue-easytable'
 import store from './store'
 import HelloWorld from './components/HelloWorld.vue';
+import VeeValidate from 'vee-validate';
 
+Vue.use(VeeValidate);
 Vue.use(VueResource)
 /*解决跨域问题*/
 Vue.http.options.credentials = true;
@@ -50,6 +52,7 @@ new Vue({
       if (TOOKEN === null || TOOKEN === '') {
         /*进行注销操作*/
         this.$router.push("/login");
+
       } else if (TOOKEN === 'Refresh') {
         //直接进入主页面刷新
         /*this.getPermissions();*/
@@ -65,12 +68,11 @@ new Vue({
   },
   methods: {
     getPermissions: function () {
-
      let nowpath= this.$router.currentRoute.path;
       if('/login'===nowpath){
         return;
       }
-      var ment_list_url = server_host + "upms/permission/list?permissionId=1";
+      var ment_list_url = server_host + "upms/permission/list";
       this.$http.get(ment_list_url, {params: {}, credentials: true}).then((response) => {
         let p_menu_list = response.data;
         this.$store.commit('setpmenulist', p_menu_list);
@@ -103,12 +105,13 @@ new Vue({
         }]
       };
       if(munulist){
+
         munulist.forEach((menu) => {
           if (menu.sunList.length > 0) {
             menu.sunList.forEach((smenu) => {
               let routeritem = {
-                path: smenu.routerUri+'/:permissionId',
-                name: smenu.name,
+                path: smenu.routerUri,
+                name: smenu.routerName,
                 component: () => ({
                   // 需要加载的组件。应当是一个 Promise
                   component: import('./components/' + smenu.componentPath),
@@ -127,7 +130,7 @@ new Vue({
               mainComponent.children.push(routeritem);
             });
           }
-        });
+        }) ;
         this.$router.addRoutes([mainComponent]);
       }
 

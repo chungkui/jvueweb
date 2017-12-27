@@ -24,7 +24,7 @@
       Headpart,
       Contentpart
     },
-    created:function(){
+    mounted:function(){
       if(this.$store.state.TOOKEN===null||this.$store.state.TOOKEN===''){
          this.$store.commit('changeLoginInfo','Refresh');
       }
