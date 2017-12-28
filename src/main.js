@@ -10,7 +10,7 @@ import {VTable, VPagination} from 'vue-easytable'
 import store from './store'
 import HelloWorld from './components/HelloWorld.vue';
 /*import VeeValidate from 'vee-validate';*/
-import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio} from 'element-ui'
+import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio,RadioGroup} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Dialog);
@@ -21,6 +21,7 @@ Vue.use(Input);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Radio);
+Vue.use(RadioGroup);
 
 
 /*Vue.use(VeeValidate);*/
