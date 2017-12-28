@@ -29,8 +29,7 @@
       </div>
       <div class="col-md-4">
         <div class="btn-group pull-right" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" data-toggle="modal"
-                  data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> 新增
+          <button type="button" class="btn btn-default"  v-on:click="openAddWindow"><span class="glyphicon glyphicon-plus"></span> 新增
           </button>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
@@ -74,12 +73,19 @@
 
       </div>
     </div>
+    <info ref="info" ></info>
+    <edit ref="edit"  v-on:dadrefresh="DoRefresh"></edit>
+    <!--<add ref="add"></add>-->
   </div>
 </template>
 
 <script>
+  import edit from './edit'
+  import info from './info'
   export default {
+    components: {edit,info},
     name: "user",
+
     data:function () {
       return {
 
@@ -111,12 +117,15 @@
       this.loaddata();
     },
     methods:{
+      DoRefresh:function () {
+        this.loaddata();
+      },
       loaddata: function () {
         var inner_url = server_host + 'upms/user/list';
         this.isLoading = true;
         this.$http.get(inner_url, {params: {pageIndex: this.pageIndex, pageSize: this.pageSize}}).then(function (res) {
           this.userList = res.body.data.list;
-          this.totalNum = res.body.data.rowCount;
+          this.totalNum = res.body.data.total;
           this.isLoading = false;
         }, function (res) {
           // 处理失败的结果
@@ -129,6 +138,10 @@
         this.pageSize = pageSize;
         this.pageIndex = 1;
         this.loaddata();
+      },
+      openAddWindow:function () {
+        this.$refs.edit.dialogFormVisible = true;
+        this.$refs.edit. beforeClose
       }
     }
   }

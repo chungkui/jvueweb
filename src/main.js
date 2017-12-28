@@ -4,18 +4,32 @@ import App from './App'
 import router from './router'
 // 引入样式
 import 'vue-easytable/libs/themes-base/index.css'
+
 // 导入 table 和 分页组件
 import {VTable, VPagination} from 'vue-easytable'
 import store from './store'
 import HelloWorld from './components/HelloWorld.vue';
-import VeeValidate from 'vee-validate';
+/*import VeeValidate from 'vee-validate';*/
+import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio} from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(VeeValidate);
+Vue.use(Dialog);
+Vue.use(Form);
+Vue.use(Button);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Radio);
+
+
+/*Vue.use(VeeValidate);*/
 Vue.use(VueResource)
 /*解决跨域问题*/
 Vue.http.options.credentials = true;
 // 注册到全局
 Vue.component(VTable.name, VTable)
+
 Vue.component(VPagination.name, VPagination)
 
 Vue.http.options.emulateJSON = true;
