@@ -9,22 +9,22 @@
       <div class="col-md-8">
         <div class="form-group">
           <span class="pull-left form-span">姓名:</span>
-          <input type="text" class="form-control" placeholder="请输入姓名">
+          <input type="text" v-model="searchParams.realname" class="form-control" placeholder="请输入姓名">
         </div>
         <div class="form-group">
           <span class="pull-left form-span">状态:</span>
-          <select class="form-control">
+          <select class="form-control" v-model="searchParams.locked">
             <option>请选择</option>
-            <option>启用</option>
-            <option>禁用</option>
+            <option value="1">启用</option>
+            <option value="2">禁用</option>
           </select>
         </div>
         <div class="form-group">
           <span class="pull-left form-span">登录名:</span>
-          <input type="text" class="form-control" placeholder="登录名">
+          <input type="text" v-model="searchParams.username" class="form-control" placeholder="登录名">
         </div>
         <div class="form-group btn-search">
-          <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+          <button class="btn btn-default" v-on:click="DoRefresh"><span class="glyphicon glyphicon-search"></span> 搜索</button>
         </div>
       </div>
       <div class="col-md-4">
@@ -50,9 +50,7 @@
 
     </div>
     <div class="panel panel-default" >
-      <div id="myAlert" style="display: none;margin-bottom:0" class="alert alert-success">
-        <strong>操作成功！</strong>
-      </div>
+
       <div class="panel-heading ">
         用户管理
       </div>
@@ -110,20 +108,29 @@
         isLoading: true,
         totalNum: 0,
         pageIndex: 1,
-        pageSize: 8
+        pageSize: 8,
+        searchParams:{
+          locked :null,
+           realname:null,
+          username:null
+        }
       }
     },
     created:function () {
       this.loaddata();
     },
     methods:{
+
       DoRefresh:function () {
         this.loaddata();
       },
       loaddata: function () {
         var inner_url = server_host + 'upms/user/list';
         this.isLoading = true;
-        this.$http.get(inner_url, {params: {pageIndex: this.pageIndex, pageSize: this.pageSize}}).then(function (res) {
+        let   searchParams=this.searchParams;
+        let params= {pageIndex: this.pageIndex, pageSize: this.pageSize}
+
+        this.$http.get(inner_url, {params: $.extend({}, params,searchParams)}).then(function (res) {
           this.userList = res.body.data.list;
           this.totalNum = res.body.data.total;
           this.isLoading = false;

@@ -5,7 +5,9 @@ export default new Vuex.Store({
   state:{
     TOOKEN:'',
     userinfo:null,
-    p_menu_list:[]
+    p_menu_list:[],
+    selectMenuId:'',
+    pselectedId:''
   },
   mutations:{
     changeLoginInfo(state,JSESSIONID){
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     },
     setpmenulist(state,pmenulist){
       state.p_menu_list= pmenulist;
+    },
+    setSelectMenuId(state,selectId){
+      state.selectMenuId=selectId;
+    },
+    setPselectedId(state,selectId){
+      state.pselectedId=selectId;
     }
   },
   actions: {

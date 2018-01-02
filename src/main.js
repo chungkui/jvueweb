@@ -10,9 +10,8 @@ import {VTable, VPagination} from 'vue-easytable'
 import store from './store'
 import HelloWorld from './components/HelloWorld.vue';
 /*import VeeValidate from 'vee-validate';*/
-import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio,RadioGroup} from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-
+import 'element-ui/lib/theme-chalk/index.css';
+import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio,RadioGroup  ,Table, TableColumn ,Container,Header,Footer,Main} from 'element-ui';
 Vue.use(Dialog);
 Vue.use(Form);
 Vue.use(Button);
@@ -22,8 +21,13 @@ Vue.use(Select);
 Vue.use(Option);
 Vue.use(Radio);
 Vue.use(RadioGroup);
+Vue.use(Table);
+Vue.use(TableColumn);
 
-
+Vue.use(Container);
+Vue.use(Header);
+Vue.use(Footer);
+Vue.use(Main);
 /*Vue.use(VeeValidate);*/
 Vue.use(VueResource)
 /*解决跨域问题*/
@@ -97,7 +101,7 @@ new Vue({
       });
     },
     paserPermission2router: function () {
-      const Main = () => ({
+      const jvMain = () => ({
         // 需要加载的组件。应当是一个 Promise
         component: import('./components/main.vue'),
         // 加载中应当渲染的组件
@@ -112,7 +116,7 @@ new Vue({
       let munulist = this.$store.state.p_menu_list;
       let mainComponent = {
         path: '/',
-        component: Main,
+        component: jvMain,
         children: [ {
           path: '',
           name: 'HelloWorld',
@@ -122,8 +126,8 @@ new Vue({
       if(munulist){
 
         munulist.forEach((menu) => {
-          if (menu.sunList.length > 0) {
-            menu.sunList.forEach((smenu) => {
+          if (menu.children.length > 0) {
+            menu.children.forEach((smenu) => {
               let routeritem = {
                 path: smenu.routerUri,
                 name: smenu.routerName,
@@ -139,7 +143,14 @@ new Vue({
                   // 最长等待时间。超出此时间则渲染错误组件。默认：Infinity
                   timeout: 3000
                 }),
-                props: true
+                props: true,
+                beforeEnter : (to, from, next) => {
+                   /*绑定当前路由的menu id*/
+                   debugger;
+                  this.$store.commit("setSelectMenuId",smenu.permissionId);
+                  this.$store.commit("setPselectedId",smenu.pid);
+                  next();
+                }
               };
 
               mainComponent.children.push(routeritem);

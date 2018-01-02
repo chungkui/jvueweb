@@ -10,8 +10,8 @@
       </div>
       <transition name="fade">
         <ul class="navContent" v-show="item.permissionId==pselectedId">
-          <s_menu_item v-for="(liitem,index) in item.sunList"
-                       v-bind:item="liitem" v-bind:selectedId="selectedId" :key="liitem.permissionId"
+          <s_menu_item v-for="(liitem,index) in item.children"
+                       v-bind:item="liitem" :key="liitem.permissionId"
           ></s_menu_item>
         </ul>
       </transition>
@@ -27,22 +27,24 @@
     data: function () {
       return {
 
-        selectedId: 0,
-        pselectedId: 0
       }
     },
     computed : {
       p_menu_list () {
         return this.$store.state.p_menu_list;
+      },
+      pselectedId () {
+        return this.$store.state.pselectedId;
       }
     },
 
     methods: {
       dohover: function (index) {
         if (this.pselectedId === index) {
-          this.pselectedId = 0;
+          this.$store.commit("setPselectedId",0);
         } else {
-          this.pselectedId = index;
+          this.$store.commit("setPselectedId",index);
+
         }
       }
     }

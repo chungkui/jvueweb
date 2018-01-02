@@ -75,6 +75,7 @@
     methods: {
       refreshDad: function (done) {
         this.$emit('dadrefresh');
+        this.$refs['userFrom'].resetFields();
         done();
       },
       submit: function () {

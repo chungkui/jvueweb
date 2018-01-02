@@ -25,20 +25,23 @@
     props: {
       item: {
         type: Object
-      },
-      selectedId:{
-        type:Number
       }
-    }, methods: {
+    },
+    methods: {
       loadlink:function (link) {
         this.$router.push(link);
-        this.$parent.selectedId=this.item.permissionId;
       },
       li_mouseenter: function () {
        this.isdivshow=true;
       },
       li_mouseleave: function () {
         this.isdivshow=false;
+      }
+    },
+    computed:{
+
+      selectedId:function () {
+        return this.$store.state.selectMenuId;
       }
     }
   }
