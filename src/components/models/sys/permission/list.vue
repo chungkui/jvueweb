@@ -1,37 +1,23 @@
 <template>
-  <div>
-    <div class="allContent">
-      <div class="treeContent">
+  <el-container>
+    <el-aside width="200px">
         <p class="treetip">请通过右击节点进行操作</p>
         <div class="ztree" id="treeContent">
-
+            <router-view></router-view>
         </div>
+    </el-aside>
+    <el-main>
+      <div id="rMenu">
+        <ul class="dropdown-menu">
+          <li id="m_add" onclick="viewTreeNode();">查看</li>
+          <li id="m_del" onclick="disableTreeNode();">禁用/启用</li>
+          <li id="m_check" onclick="addTreeNode();">添加下级</li>
+          <li id="m_unCheck" onclick="editTreeNode();">编辑</li>
+        </ul>
       </div>
-      <div class="workContent" id="workContent">
-
-      </div>
-    </div>
-
-    <div id="rMenu">
-
-      <ul class="dropdown-menu">
-
-        <!--  <li id="m_add" onclick="addTreeNode();">Add Node</li>  -->
-
-        <li id="m_add" onclick="viewTreeNode();">查看</li>
-
-        <!-- <li id="m_del" onclick="disableTreeNode();">禁用/启用</li>-->
-
-        <li id="m_check" onclick="addTreeNode();">添加下级</li>
-
-        <li id="m_unCheck" onclick="editTreeNode();">编辑</li>
-
-      </ul>
-
-    </div>
-  </div>
+    </el-main>
+  </el-container>
 </template>
-
 <script>
   export default {
     name: "list",
@@ -73,7 +59,7 @@
     },
     methods: {
       zTreeOnRightClick:function(event, treeId, treeNode) {
-        debugger;
+
         if (!treeNode && event.target.tagName.toLowerCase() != "button" && $(event.target).parents("a").length == 0) {
 
           this.zTree.cancelSelectedNode();
@@ -131,37 +117,31 @@
 </script>
 
 <style scoped>
-  .allContent {
-    width: 100%;
-    height: 100%;
-  }
-
-  .treeContent {
-    height: 800px;
-    width: 20%;
-    float: left;
-    border-right: solid 1px;
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
 
   }
 
-  .workContent {
-    height: 100%;
-    width: 75%;
-    float: right;
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
 
   }
 
-  .treeContent .treetip {
+ .treetip {
     color: black;
     width: 95%;
     border-bottom: solid 1px #ccc;
     text-align: center;
   }
 
-  .ztree {
+/*  .ztree {
     overflow-y: scroll;
     height: 100%;
-  }
+  }*/
 
   div#rMenu {
     position: absolute;

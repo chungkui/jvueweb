@@ -11,7 +11,7 @@ import store from './store'
 import HelloWorld from './components/HelloWorld.vue';
 /*import VeeValidate from 'vee-validate';*/
 import 'element-ui/lib/theme-chalk/index.css';
-import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio,RadioGroup  ,Table, TableColumn ,Container,Header,Footer,Main} from 'element-ui';
+import {Dialog,Form,Button,FormItem,Input,Select,Option,Radio,RadioGroup  ,Table, TableColumn ,Container,Header,Footer,Main,Aside} from 'element-ui';
 Vue.use(Dialog);
 Vue.use(Form);
 Vue.use(Button);
@@ -28,6 +28,8 @@ Vue.use(Container);
 Vue.use(Header);
 Vue.use(Footer);
 Vue.use(Main);
+Vue.use(Aside);
+
 /*Vue.use(VeeValidate);*/
 Vue.use(VueResource)
 /*解决跨域问题*/
@@ -124,9 +126,9 @@ new Vue({
         }]
       };
       if(munulist){
-
         munulist.forEach((menu) => {
           if (menu.children.length > 0) {
+            
             menu.children.forEach((smenu) => {
               let routeritem = {
                 path: smenu.routerUri,
@@ -146,13 +148,11 @@ new Vue({
                 props: true,
                 beforeEnter : (to, from, next) => {
                    /*绑定当前路由的menu id*/
-                   debugger;
                   this.$store.commit("setSelectMenuId",smenu.permissionId);
                   this.$store.commit("setPselectedId",smenu.pid);
                   next();
                 }
               };
-
               mainComponent.children.push(routeritem);
             });
           }
@@ -160,6 +160,9 @@ new Vue({
         this.$router.addRoutes([mainComponent]);
       }
 
+    },
+    registeComponent:function (component) {
+      
     }
   }
 })
