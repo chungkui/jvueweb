@@ -128,7 +128,7 @@ new Vue({
       if(munulist){
         munulist.forEach((menu) => {
           if (menu.children.length > 0) {
-            
+
             menu.children.forEach((smenu) => {
               let routeritem = {
                 path: smenu.routerUri,
@@ -161,8 +161,39 @@ new Vue({
       }
 
     },
-    registeComponent:function (component) {
-      
+    registeComponent:function (menu) {
+      menu.children.forEach((smenu) => {
+        let routeritem = {
+          path: smenu.routerUri,
+          name: smenu.routerName,
+          component: () => ({
+            // 需要加载的组件。应当是一个 Promise
+            component: import('./components/' + smenu.componentPath),
+            // 加载中应当渲染的组件
+            loading: HelloWorld,
+            // 出错时渲染的组件
+            error: HelloWorld,
+            // 渲染加载中组件前的等待时间。默认：200ms。
+            delay: 200,
+            // 最长等待时间。超出此时间则渲染错误组件。默认：Infinity
+            timeout: 3000
+          }),
+          props: true,
+          beforeEnter : (to, from, next) => {
+            /*绑定当前路由的menu id*/
+            this.$store.commit("setSelectMenuId",smenu.permissionId);
+            this.$store.commit("setPselectedId",smenu.pid);
+            next();
+          }
+        };
+        if(smenu.children.length>0){
+          this.registeComponent(smenu);
+        }
+
+       /* mainComponent.children.push(routeritem);*/
+        return routeritem;
+      });
+
     }
   }
 })
